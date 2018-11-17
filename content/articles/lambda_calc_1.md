@@ -3,17 +3,18 @@ title: "Introduction to Untyped Lambda Calculus"
 date: 2018-11-10T23:32:42-05:00
 draft: false
 ---
-A few weeks ago I gave a talk at work about Lambda Calculus. I had intended to speak only about Curry's paradoxical Y-combinator (post about that is forthcoming), but ended up spending two-thirds of my time trying to explain the Lambda Calculus. Afterwards a few teammates suggested that the material in that talk would be better served with a blog post, so here we are.
-What practical value will learning Lambda Calculus have for your day-to-day work? Probably none unless you work on proving properties of other languages that reduce to λ calculus. But its fascinating and well worth a journey down the rabbit hole.
+A few weeks ago I gave a talk at work about Lambda Calculus. I had intended to speak only about the Y-combinator (post about that is forthcoming), but ended up spending two-thirds of my time rushing through an explanation of the untyped Lambda Calculus. Afterwards a few teammates suggested that the material in that talk would be better served with a blog post, so here we are.
+
+The untyped lambda calculus isn't particularly useful for day-to-day programming unless you happen to work in language design, but its fascinating and well worth a trip down the rabbit hole.
 
 ## The Origin Story
-The beginning of the 20th century must have been an exciting time to be a mathematician. The first international congress of mathematicians had occurred in 1897, and following it's success a second took place in 1900. The second ICM was attended by Klein, Cantor, Markov, and Hilbert (among many others), and it was at the 2nd ICM that Hilbert posited his famous 23 problems. These problems had a major impact on mathematics in the 20th century, but it would be hard to argue that any has been more influential than his 10th problem.
+David Hilbert's work and problems has inspired a significant portion of the mathematical research in the 20th century, but I'm of the opinoin that none of his questions has been more impactful than the Entscheidungsproblem. Translated from German, the Entscheidungsproblem means "decision problem", and asks for an algorithm that returns true or false for an arbitrary statement in first order logic. Orginally discussed by Leibniz in the 17th century, and further explored by Babbage, it didn't see significant attention until re-posited by Hilbert in 1928.
 
-Hilbert's 10th problem asks whether there is, when given a Diophantine equation (a polynomial with any number of unknown variables and integer coefficients), there exists a process that can determine using a fixed number of operations whether the equation is solvable using integers for each unknown. The trick is that Hilbert was asking whether there was an algorithm for _any_ Diophantine equation. The mathematicians of the time quickly realized that in order to prove or disprove this question two different cases needed to be met. For the affirmative, you simply needed an _algorithm_ that could return `True` or `False` when given a Diophantine equation, without actually understanding or formally defining what an algorithm actually is. Proving the negative, or absence of such an algorithm, on the other hand requires you to first formally define what an algorithm is becuase you must prove that no algorithm can possibly exist that solves this problem. I.e. How can you prove that no algorithm can possibly exist, rather than just that you weren't able to find one that worked?
+The fascinating aspect of the decision problem is the asymetry between what's required for a positive vs. negative answer. As asked by Hilbet, a positive answer requires an algorithm that provides a true or false answer when given any statement in first order logic, but it says nothing about actually understanding how the algorithm works. So long as the algorithm always returns true or false eventually, the answer is positive. On the other hand, to prove that no such algorithm exists mathematicians researching the Entscheidungsproblem first needed to define what's meant by an _algorithm_. After all, to prove that an algorithm cannot exist you'd need to do more than show that you haven't yet found a solution yet, but actually show taht the very nature of algorithm prevents a positive answer.
 
-If this sounds similar to the _Halting Problem_, that's because Hilbert's 10th problem gave birth to the formal study of _recursive functions_, which eventually led to Alan Turing's thesis. Roughly, in mathematics a recursive function is one that has an inductive definition. Of particular interest were the _primitive recursive functions_, or those functions that, given a small set of "base" functions like `const` or `succ`, can be constructed using only substitution as in `(x+y)² ∼ prod(sum(x,y), sum(x,y))` or  primitive recursion (separate from a primitive recursive function) which is quite similar to induction from some base input up to the target `t`. If you think about primitive recursive functions as a pure `fold` over some data structure, it should be come apparent that there should exist an algorithm to compute the result of any primitive recursive function. Kleene realized that these primitive recursive functions were all computable, but also asked whether there was a larger class of functions that were also computable without necessarily being primitive recursive. But what do recursive functions have to do with lambda calculus?
+If this sounds similar to the _Halting Problem_, that's because the decision problem gave birth to the formal study of _recursive functions_ by Kleene, a doctoral student of Alonzo Church at Princeton in the early 1930's. Mathematically, a recursive function is one that has an inductive definition. Of particular interest to Kleene were the _primitive recursive functions_, or those functions that, given a small set of "base" functions like `const` or `succ`, can be constructed using only substitution as in `(x+y)² ∼ prod(sum(x,y), sum(x,y))` or  primitive recursion (separate from a primitive recursive function) which is quite similar to induction from some base input up to the target `t`. If you think about primitive recursive functions as a pure `fold` over some data structure, it should be come apparent that there should exist an algorithm to compute the result of any primitive recursive function. Kleene realized that these primitive recursive functions were all computable, but also asked whether there was a larger class of functions that were also computable without necessarily being primitive recursive. But what do recursive functions have to do with lambda calculus?
 
-At the same time that Kleene was studying computation using the aforementioned recursive functions, Alonzo Church was working on a similar model of computation that used structured function application. Shortly after Church published his breakthrough paper on computability, his doctoral student Alan Turing published his doctoral thesis that brought the world Turing machines and their symoblic manipulation approach to computation. All three models have been proven equivalent, and given that you're likely already familiar with Turing machines, let's learn about the λ calculus!
+Well, at the same time that Kleene was studying computation using the aforementioned recursive functions, his advisor Alonzo Church was working on a similar model of computation that used structured function application. Shortly after Church published his breakthrough paper on computability, another of Church's doctoral student Alan Turing published his doctoral thesis that brought the world Turing machines and their symoblic manipulation approach to computation. All three models have been proven equivalent, and given that you're likely already familiar with Turing machines and just got a primer on recursive functions, let's learn about the λ calculus!
 
 ## The Basics
 
@@ -81,6 +82,7 @@ Applicative order evaluation on the other hand works by evaluating the leftmost 
 Now that we've gotten the basics out of the way, lets see if we can write a few data structures and algorithms. Before going any further though, its important to remember that λ calculus has only application and abstraction for primatives, so if we want natural numbers or booleans, we need to define them from those two primatives.
 
 ##### Simple functions
+To implement interesting functions and datatypes we need some basic building blocks.
 ```
 id := λa.a
 
@@ -146,3 +148,37 @@ not true →
 
 Looks like `not true` evaluates to `false` and `true or false` evaluated to `true`! Personally, I find that you can express things like this using function application pretty mind-blowing.
 
+##### Natural Numbers
+During his development of lambda calculus, Alonzo Church devised a way of inductively encoding the natural numbers. Church encoding defines the natural numbers as either `0` or `n+1`. 2 is represented as `(0+1) +1`. The following lambda expressions translate this induction into the calculus.
+```
+zero := id
+
+succ := λn.λs.((s false) n) → pair false
+
+isZero := λn.(n fst)
+
+pred := λn.(((isZero n) zero) (n snd))
+```
+
+Mapping 0 to the identity function, and `+1` to the partially applied `pair` function means we can use the pair accessor functions to implement `isZero` and `-1`. This works because, if you recall from above, `fst` is identical to `true` and `zero` is the identity fuction, so `isZero zero` results in `fst` or true. Similarly, any usage of `isZero n` for some _n_ that is not 0 will result in pulling the first value out of `succ`, which happens to be `false`. Let's see what `isZero ((0+1)-1)` evaluates to:
+
+```
+(isZero (pred (succ zero))) →
+(λn.n fst) (pred (succ zero)) →
+(pred (succ zero)) fst →
+(((isZero (succ zero)) zero) ((succ zero) snd)) fst →
+((((succ zero) fst) zero) ((succ zero) snd)) fst →
+((((λs.((s false) zero) fst) zero) ((succ zero) snd)) fst →
+(((((false fst) zero) ((succ zero) snd)) fst →
+(((((λs.s zero) ((succ zero) snd)) fst →
+((((zero ((succ zero) snd)) fst →
+((succ zero) snd) fst →
+(λs.((s false) zero) snd) fst →
+((snd false) zero) fst →
+((λs.s zero) fst →
+λa.a fst →
+fst → true
+```
+
+## In Conclusion
+This should have given you a small taste for how lambda calculus works, as well as some context into how it came to be. In a future post I'll explore Curry's paradox & the Y-Combinator, which still just scratches the surface of what's possible in the untyped lambda calculus.

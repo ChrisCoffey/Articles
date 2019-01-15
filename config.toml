@@ -9,8 +9,6 @@ theme = "even"
 preserveTaxonomyNames = true
 hasCJKLanguage = false
 paginate = 5
-disqusShortname = ""      # disqus_shortname
-googleAnalytics = ""      # UA-XXXXXXXX-X
 copyright = "Chris Coffey"            # default: author.name
 
 [author]                  # essential

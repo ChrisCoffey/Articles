@@ -14,4 +14,18 @@ Similarly, the "anti-functor-ness" of `T a` is called `Contravariance`, and mean
 Type variables in an expression are either positive or negative. In the function `a -> b`, the `b` is positive, while the `a` is negative. Just like integer mathematics, two negatives make a positive, so `(a -> b) -> b` actually has `a` in positive position, meaning this covariant in `a`.
 In fact, whether a `T a` is co or contra variant in `a` is determined only by whether `a` is positive or negative. Positive `a` means `Covariance`, while negative `a` means `Contravariance`. If the `a` appears in both positive and negative positions, then its invariant, and therefore not particularly exciting.
 
-I'll extend this in the near future
+Now that we have a few types of variance, lets use them to reason about whether or not some type signatures are `Functor`s in `a` or not.
+
+```
+foo :: a -> b
+
+bar :: b -> a
+
+baz :: (b -> a) -> b
+
+fiz :: (a -> b) -> b
+```
+
+In `foo`, `a` is the input rather than output, and since we've already established that `Functor`s transform the output, `foo` may not be a functor. To confirm this intuition, we can use our newfound knowledge about variance & notice that `a` occurs in negative position. Since `Functor` relies on the type being covariant in `a`, and covariance is determined by a positive `a`, we can be certain that `foo` is contravariant and therefore not a `Functor`. By the same reasoning, we can be certain that `bar`, where `a` occurs in positive position, is a `Functor`. `baz` is an interesting case because `a` occurs in positive position in the argument function, but the argument function occurs in negative position. Just like basic arithmetic, a positive multiplied by a negative is a negative, so `baz` is contravariant in `a` and not a `Functor`. Again, using the same logic, by flipping the position of `a` in the argument function to negative position & creating a double negative, `a` occurs in positive position in `fiz`. So `fiz` is a `Functor`.
+
+I'll dive deeper into how `(a -> b) -> b` manifests itself as JavaScript style continuations in my next post.

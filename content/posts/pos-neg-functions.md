@@ -2,6 +2,7 @@
 title: "Tricky Functor instances"
 date: 2019-01-13T16:36:32-05:00
 draft: false
+tags: ["haskell", "types", "theory"]
 ---
 
 I was recently started reading [Thinking with Types](http://thinkingwithtypes.com/) and came upon a great explanation of variance and the role it plays in reasoning about functions.

@@ -2,6 +2,7 @@
 title: "Fixedpoints"
 date: 2018-10-28T16:07:37-04:00
 draft: true
+tags: ["math", "theory", "functional programming"]
 ---
 
 - Intro explaining where I first encountered them

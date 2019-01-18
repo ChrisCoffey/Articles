@@ -2,6 +2,7 @@
 title: "Cuckoo Filters: Part 1"
 date: 2018-10-28T16:07:29-04:00
 draft: false
+tags: ["haskell", "performance"]
 ---
 
 - Intro with why it became interesting

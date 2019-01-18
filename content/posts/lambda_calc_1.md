@@ -2,6 +2,7 @@
 title: "Introduction to Untyped Lambda Calculus"
 date: 2018-11-10T23:32:42-05:00
 draft: false
+tags: ["math", "theory"]
 ---
 A few weeks ago I gave a talk at work about Lambda Calculus. I had intended to speak only about the Y-combinator (post about that is forthcoming), but ended up spending two-thirds of my time rushing through an explanation of the untyped Lambda Calculus. Afterwards a few teammates suggested that the material in that talk would be better served with a blog post, so here we are.
 

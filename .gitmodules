@@ -3,4 +3,4 @@
 	url = https://github.com/olOwOlo/hugo-theme-even
 [submodule "themes/hermit"]
 	path = themes/hermit
-	url = git@github.com:Track3/hermit
+	url = https://github.com/Track3/hermit

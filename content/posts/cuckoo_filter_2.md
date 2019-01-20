@@ -1,16 +1,13 @@
 ---
-title: "Cuckoo Filters: Part 1"
-date: 2018-10-28T16:07:29-04:00
-draft: false
-tags: ["haskell", "performance"]
+title: "Cuckoo Filter: Part 2"
+date: 2019-01-20T15:14:40-05:00
+draft: true
+toc: false
+images:
+tags:
+  - untagged
 ---
 
-- Intro with why it became interesting
-    - Link tracking
-    - Spell checking
-    - Bloom filters
-- Description of how cuckoo filters work, but refer to paper for details and proofs
-    - Specifically a compare/contrast with bloom filters
 - Talk through how the library came together.
     - Reference bos' Bloom-filter library
     - Initial implementation & design choices
@@ -21,5 +18,3 @@ tags: ["haskell", "performance"]
     - Profiling and measuring
         - using criterion for simple insert benchmarks
         - tracking memory using GHC's profilng flags via `stack build --profle`
-
-

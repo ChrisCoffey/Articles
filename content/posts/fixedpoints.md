@@ -1,6 +1,6 @@
 ---
 title: "Fixpoints and the Y combinator"
-date: 2018-10-28T16:07:37-04:00
+date: 2019-03-28T16:07:37-04:00
 draft: false
 tags: ["math", "theory", "functional programming"]
 ---

@@ -1,9 +1,9 @@
 ---
-title: "Lexographic_permutations"
+title: "Generating Ordered Permutations"
 date: 2019-04-01T14:01:17-04:00
-draft: false
 toc: false
-images: tags:
+images:
+tags:
   - Algorithms
 ---
 

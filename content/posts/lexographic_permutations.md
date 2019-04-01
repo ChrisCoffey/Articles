@@ -131,6 +131,6 @@ swap(pivot, swap_target)
 reverse_right_of_pivot()
 ```
 
-From my perspective, this is definitely no-trival, but also a fascinating algorithm. On top of that, it allows for generating all permutations in _O(n)_ time and constant space, which is pretty impressive after the earlier _O(n!)_ experiments.
+From my perspective, this is a non-trival and fascinating algorithm. On top of that, it allows for generating all permutations in _O(n)_ time and constant space, which is pretty impressive after the earlier _O(n!)_ experiments.
 
 

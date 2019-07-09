@@ -16,7 +16,7 @@ I'm going to tell you a little story about how I added a new project to my team'
 It was last Tuesday, about 20 minutes before my weekly one-on-one with one of our VPs when Slack popped up an alert on my screen.
 `I was just chatting with <your boss> and we was going to go back to you guys to see if maybe a script could be run to do the <work> in some type of automated fashion before next Wednesday` it read.
 Moments later I'd fired off a response letting her know that one of my engineering teams could take care of the work.
-What did I just doo??!
+What did I just do??!
 I'd accepted a project directly from an exec rather than going through my PM, and via Slack no less.
 
 These days there are three small teams reporting to me, and one of them was the perfect fit for this work.

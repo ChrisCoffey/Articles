@@ -13,22 +13,22 @@ That being said, books are wonderful and always worth sharing, so here are the t
 They're mostly professional, but there are a few mind-expanding books thrown in for good measure.
 
 ## Startup/ Business
+- Lean Startup
 - The Goal
 - Phoenix Project
 - DevOps Handbook
 - High-Output Management
-- Lean Startup
 - Management
+- Peopleware
 - Mythical Man-Month
-- Site Reliability Engineering
 - Making Work Visible
 - Accelerate
 - Toyota Production System: Beyond Large-Scale Production
-- Peopleware
 
 ## Product Management
 - Design of Design
 - Design of Everyday Things
+- Inspired
 - The Joy of UX
 - Universal Principles of Design
 - The Best Interface is No Interface
@@ -36,27 +36,27 @@ They're mostly professional, but there are a few mind-expanding books thrown in 
 ## Software
 - Code Complete
 - Pragmatic Programmer
-- Scalability Rules
-- Site Reliability Engineering
 - Release It!
-- Pearls of Functional Algorithm Design
+- Scalability Rules
 - Structure and Interpretation of Computer Programs
 - The Architecture of Open Source Applications
+- Site Reliability Engineering
+- Pearls of Functional Algorithm Design
 - Purely Functional Data Structures
 
 ## Personal Development
-- Pragmatic Thinking and Learning
 - The Effective Executive
-- The Coaching Habit
 - The Manager's Path
 - On Writing Well
+- Pragmatic Thinking and Learning
+- The Coaching Habit
 
 ## Fun
+- Code
 - Dealers of Lightning
 - Black Swan
 - The Emperor's New Mind
 - Axiomatic
-- Code
 - Godel, Escher, Bach
 - Coders at Work
 - Thinking Fast, Thinking Slow

@@ -1,8 +1,7 @@
 ---
 title: "Algo Study: Evolving N Queens"
 date: 2019-06-10T13:23:53-04:00
-draft: true
-toc: false
+draft: false
 images:
 tags:
   - algorithms

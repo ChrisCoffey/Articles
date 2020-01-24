@@ -14,6 +14,7 @@ They're mostly professional, but there are a few mind-expanding books thrown in 
 
 ## Startup/ Business
 - Lean Startup
+- Four Steps to the Epiphany
 - The Goal
 - Phoenix Project
 - DevOps Handbook
@@ -50,6 +51,7 @@ They're mostly professional, but there are a few mind-expanding books thrown in 
 - On Writing Well
 - Pragmatic Thinking and Learning
 - The Coaching Habit
+- Ultralearning
 
 ## Fun
 - Code
@@ -60,3 +62,4 @@ They're mostly professional, but there are a few mind-expanding books thrown in 
 - Godel, Escher, Bach
 - Coders at Work
 - Thinking Fast, Thinking Slow
+- The Book of Why

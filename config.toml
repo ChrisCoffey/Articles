@@ -30,7 +30,7 @@ copyright = "This work is licensed under a Creative Commons Attribution-NonComme
   # images = [""]
   themeColor = "#494f5c"
 
-  homeSubtitle = "My musings about Haskell, programming, and building a company."
+  homeSubtitle = "My musings about programming, management, and building a company."
   footerCopyright = ' &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
   # bgImg = ""  # Homepage background-image URL
 
@@ -55,3 +55,8 @@ copyright = "This work is licensed under a Creative Commons Attribution-NonComme
     name = "Posts"
     url = "posts/"
     weight = 10
+
+  [[menu.main]]
+    name = "About"
+    url = "menu/posts/about/"
+    weight = 20

@@ -1,6 +1,6 @@
 ---
 title: "Ending the insanity of externally-managed configuration"
-date: 2019-01-18T20:59:44-05:00
+date: 2020-01-18T20:59:44-05:00
 draft: true
 images:
 tags:

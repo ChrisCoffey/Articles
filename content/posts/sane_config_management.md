@@ -1,7 +1,7 @@
 ---
-title: "Ending the insanity of externally-managed configuration"
+title: "Finally, application config management you can live with"
 date: 2020-01-18T20:59:44-05:00
-draft: true
+draft: false
 images:
 tags:
   - devops
@@ -68,11 +68,11 @@ Encrypting the sensitive parts is even better, although it suffers from the "sha
 
 The shared key problem is a simple name for the problems that arise when a team of developers are all using the same shared encryption key for their config.
 They'll usuall store the key in a password vault like 1Password or LastPass, then each developer pulls the key down locally as part of their onboarding.
-The biggest issue here is that there's no way to control the prolifferation of the key after someone downloads it from the password vault.
+The biggest issue here is that there's no way to control the proliferation of the key after someone downloads it from the password vault.
 Meaning once its out of the vault its painfully easy to accidentally copy it onto another machine, commit it, etc...
 Another problem that crops up is key rotation.
 
-Every time a developer leaves or movs into a role where they shoudl no longer have access to production config, the shared key needs to be rotated.
+Every time a developer leaves or move into a role where they should no longer have access to production config, the shared key needs to be rotated.
 This means a new key is generated, everyone pulls down the new key, then the config is decrypted with the old key and re-encrypted with the new one.
 Finally, they new key needs to be pushed into CI or production servers - wherever the config is actually decrypted - before it can finally go live.
 That's not a terrible process, but it takes a little while and its easy to make a mistake along the way.

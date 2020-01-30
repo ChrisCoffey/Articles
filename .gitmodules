@@ -6,4 +6,4 @@
 	url = https://github.com/Track3/hermit
 [submodule "themes/techlog-simple"]
 	path = themes/techlog-simple
-	url = https://github.com/mazgi/hugo-theme-techlog-simple.git
+    url = https://github.com/ChrisCoffey/hugo-theme-techlog-simple.git

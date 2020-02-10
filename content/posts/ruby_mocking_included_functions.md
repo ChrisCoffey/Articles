@@ -1,14 +1,14 @@
 ---
 title: "Mocking Included Module Methods"
 date: 2020-02-05T06:06:56-05:00
-draft: true
+draft: false
 tags:
   - Ruby
 ---
 
 tl;dr; A brief story of an issue I created when writing some Rails tests.
 This got me considering how method calls in Ruby work, particularly the ancestor chain.
-But, the issue turned out to be a bit unrelated.
+But, the issue turned out to be completely unrelated to inheritance.
 There's a surprise ending, but the crux of the issue was that I'd made a mistake in understanding how a `view` in Ralis works.
 
 ## Mocking module methods with RSpec
@@ -61,34 +61,21 @@ To my frustration, mocking that function call didn't do anything.
 I poked around for much longer than I'm proud of (felt like at least an hour) before it dawned on me that I should try mocking out `ApplicationHelper` instead of `FooController`.
 Sure enough, I saw the behavior I was looking for and my tests started passing.
 
-## Remembering the ancestor chain
+## What happened?
 
-Why didn't mocking out the function on `FooController` work?
-After all, `include` was implicitly used, so the functions defined in the helper module should have been implicitly inserted right into the contrller class.
-At least, that was the mental model I was working under, and it seemed to be backed up by most discussions of Ruby's `include` keyword.
-Unfortunately, all of those discussions are oversimplifications that gloss over how method calls in Ruby actually work.
+It was strange in the moment that mocking out the helper module would work where mocking the controller did not.
+As I thought about this for a moment it occurred to me that `allow_any_instance_of` injects an RSpec `Proxy` in front of `FooController` anyways.
+And because I was not seeing the behavior I expected from `allow_any_instance_of`, it must be the case that `helper_function` is not being called from `FooController` itself.
 
-Everything in Ruby is an `Object`, and objects can have methods attached to them.
-In true object-oriented style, objects communicate with eachother by sending messages.
-Ruby objects all have a `send` method, which implements actually finding message handlers and evaluating them.
-But why did I jump from talking about methods & functions to messages & handlers?
+After a bit more reflection this started to make sense.
+Of course the helper function wasn't being called directly from `FooController`, it was part of the view logic!
+I had forgotten that Rails controllers coordinate behavior but delegate the actual rendering to `ActionView` plumbing.
 
-In Ruby, because everything is an object with message passing capabilities, the dot syntax - `foo.bar(baz)` - we're all familiar with is actually syntacic sugar that internally leverages the capabilities of `send`.
-`send` effectively attempts to pattern match the name of te message - i.e. method name - with a method (handler) defined on the receiving object.
-If a handler is found it is evaluated and the result is returned to the caller.
+This is a `Haml` template, so the Temple engine will ultimately be called to evaluate `helper_function`.
+But that's somewhat irrelevant to the point of this article, which is to make sure you always keep in mind the control flow of whichever tools you're using.
+Rails has a lot of magi, and sometimes its easy to lose sight/forget how all the pieces fit together.
+In those cases, like I learned the other day, its important to take a step back and think through how the behaviors you see occurring fit with your understanding of the world.
+Odds are its a bug in the programmer's understanding, not a framework with as much mileage as a Rails 5.x version.
 
-That means if `include` were to add the functions defined in the included modulek directly as methods on any insatnce of the including class, my `FooController` mistake would have actually worked.
-Alas, that's now actually how `include` works.
-Instead of directly adding additional object methods onto the receiving object, the module's object - remember, **everything** is an object in Ruby -- is inserted into the *receiver chain*.
-When calling a method on `FooController` for my included module, what actually happens is that the runtime recognizes that the class doesn't contain `helper_function`.
-Rather than giving up immediately, it looks to the next ancestor and checks if it can handle a `helper_function` message.
-If so, it will evaluate it & return.
-It not, it continues checking up the chain until it either finds an object that can handle the message or it `Object` raises `method_missing`.
-
-- Point out how `allow_any_instance_of` works, and that it grants any class the ability to handle a message
-- But why wasn't it getting called?
-- FooContorller wasn't receiving that call!
-
-## The twist ending
-- Talk through FooController doesn't receie the call because the helper is evaluated in the view, not the controller!
-- Talk about how HAML view rendering works. May delve into action view as well, if necessary
+And with that, I leave you to go have a chuckle at my expense.
+Hopefully you also remember to check your understanding when in a similar situation too!

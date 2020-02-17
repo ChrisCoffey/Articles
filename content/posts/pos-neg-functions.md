@@ -17,7 +17,7 @@ In fact, whether a `T a` is co or contra variant in `a` is determined only by wh
 
 Now that we have a few types of variance, lets use them to reason about whether or not some type signatures are `Functor`s in `a` or not.
 
-```
+```haskell
 foo :: a -> b
 
 bar :: b -> a

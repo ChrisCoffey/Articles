@@ -35,6 +35,8 @@ Oh, and in a weird twist, the indexes all start at 1 rather than 0...
 
 #### One hour attempt
 
+Despite being a simple problem, there were
+
 
 ## A scalable solution
 

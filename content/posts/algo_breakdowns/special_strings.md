@@ -2,7 +2,7 @@
 title: "Special Strings"
 date: 2020-02-17T13:48:19-05:00
 draft: false
-categories:
+tags:
     - algorithm
     - interview
 ---

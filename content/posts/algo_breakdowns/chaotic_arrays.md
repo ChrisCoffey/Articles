@@ -2,7 +2,7 @@
 title: "Chaotic arrays"
 date: 2020-03-12T06:58:17-04:00
 draft: false
-categories:
+tags:
     - algorithm
     - interview
 ---

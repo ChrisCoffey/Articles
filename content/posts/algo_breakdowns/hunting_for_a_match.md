@@ -2,7 +2,7 @@
 title: "Hunting for a match"
 date: 2020-03-31T06:58:17-04:00
 draft: false
-categories:
+tags:
     - algorithm
     - interview
 ---

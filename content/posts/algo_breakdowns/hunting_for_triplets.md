@@ -2,7 +2,7 @@
 title: "Hunting for Triplets"
 date: 2020-03-03T06:38:25-05:00
 draft: false
-categories:
+tags:
     - algorithm
     - interview
 ---

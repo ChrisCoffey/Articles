@@ -22,8 +22,8 @@ description = "My musings about programming, management, and building a company.
 github = "ChrisCoffey"
 
 [taxonomies]
-tag = "tags"
-author = "authors"
+    tag = "tags"
+
 
 [languages]
 [languages.en]

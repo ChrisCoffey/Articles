@@ -1,13 +1,12 @@
 ---
 title: "Team development in a remote-first world"
-date: 2020-04-18T14:36:34-5:00
+date: 2020-04-18T06:58:17-04:00
 draft: true
 tags:
   - remote
   - management
 ---
 
-TODO THIS TITLE SUCKS
 # Developing your remote employees
 
 This article is about managing remote workers, particularly how to continue investing in and developing your remote employees.
@@ -52,7 +51,7 @@ I recommend reading through the sections in order, or at least reading "Healthy 
 
 #### Healthy remote relationships
 
-< Its not just about trust, its also about the random exchange of information that's so valuable. Work this in? >
+#Its not just about trust, its also about the random exchange of information that's so valuable. Work this in?
 Its probably impossible to have a consistently high-output team where the members don't trust each other.
 Trust, and the psychological safety that comes with it, take time and shared experiences to create.
 When everyone is working in the same space, the kind of small daily interactions that occur in kitches and hallways help grow trust.
@@ -65,12 +64,12 @@ These are synchronous conversations, meaning they're an conversation with both p
 Next, the best ones usually happen when a few people from different teams are togeather and someone asks "What are you working on these days?".
 The key parts are _synchronous_, _random group_, and _unstructured_ conversations.
 Recreating those is difficult, but very possible.
-< Donut pitch?>
+# Donut pitch?
 
 Also critical to overcommunicate, but in ways that minimze burden on your directs.
 Become ruthless about what should be synchronous, and cut as much out as possible.
 Your directs lives are just as busy as your own, so the more you can let them do on their own pace, the better.
-< Annecdote about proposal review>
+# Annecdote about proposal review
 Option 1) review the proposal live in a meeting
 Optoin 2) send out the proposal, and ask to have a meeting at the end of the following day
 Option 3) Create a more formal "proposal review process". See holocratic decision making
@@ -86,22 +85,44 @@ The work you do to create healthy relationships provides the foundation for ever
 
 #### Guardrails for remote success
 
-Define guardrails concept.
-Explain role of a manager in this context: measured by outcomes of your team (basically sum of your team's correct outputs).
-Idea is to increase the outcome per-direct.
-More difficult because expectations and requirements for the jobs just shifted 10-20%.
-Assume they already have a development plan, or at least directs know what was expected of them.
+I learned about **guardrails** from a former colleague & mentor of mine.
+He explained, and later showed, how to create situations that protect against an individuals weaknesses, while ideally letting them play to & further develop their strengths.
+I'm not going to explain guardrails further in this article - they're worth of a separate article - but instead describe some of the key guardrails for a remote team.
 
-Reframe the expectations in terms of being a remote worker.
-Be explicit about sync/async communication.
-Be explicit about video call ettiquite.
-Be explicit about when people are expected to be online at their keyboard and when they are not.
-Be explicit about making sure they step away from work & keep their important rituals (exercise, family, TV, whatever matters to them).
+Mangers for any team - whether in person or remote - should be measured not by their own contributions, not by their team's output, but by the outcomes that their team(s) create.
+Outcomes are tricky to measure, so its important as a manager to prioritize defining the metrics & building the dashboards that allow you to observe your team's outputs - since that's all you can control.
+Over time, you need to check that these outputs serve as leading indicators for the outcomes you need to achieve.
+Once that's in place, it becomes a matter of improving what you measure, to paraphrase Peter Drucker.
 
-< annecdote about times I've completely missed a meeting because of phone issuse>
-< annecdote about internet dropping/ making video call infeasible>
-< annecdote about burnout, overworking, and underworking. Pain from sitting down more at home than in the office. >
+-- Show my own team's growth as a visual?
+A massive (but valuable) simplification of improving your team's outputs can be stated as; "increase the key output-per-direct on your team, then focus them on increasingly more valuable objectives".
+So, how does this work differently in a remove vs. in-person environment?
+The biggest difference is that the job description for everyone just shifted 10-20%.
 
+We learn from a very young age how to work in-person alongside our peers.
+Co-location is also one of the hallmarks of the modern university education system (for better or worse).
+There's something to be said for sitting in the library at 10pm surrounded by hundreds of other people working just as hard as you.
+That kind of "group work ethic" carries over to office environments where your colleagues are usually never more than a short walk away.
+
+All that conditioning and training goes out the window as soon as people start working from home.
+Your role as a manager for remote workers is to clearly explain what successful remote work looks like.
+Remote work places different demands on people compared to in-person work, and its important that you show how this overlaps and changes their current responsibilities.
+This means you resetting your entire organization's understanding for how work gets done, and what good vs. poor performance looks like.
+Below I've included a short checklist of topics you should make sure to cover.
+
+[ ] Which types of communication need to be synchronous?
+[ ] Which types of communication should be asynchronous?
+[ ] What is your video call ettiquite?
+[ ] What is your public:private chat message expectation?
+[ ] Are there specific times the work day "starts" at, and that you expect people to be present?
+[ ] What is your team's chat response SLA? 10 minutes, 30 minutes?
+[ ] How do you make sure the work/life boundary remains intact? People need to step away from work.
+
+# Link to and publish our own remote work good/bad breakdown
+
+# annecdote about times I've completely missed a meeting because of phone issuse
+# annecdote about internet dropping/ making video call infeasible
+# annecdote about burnout, overworking, and underworking. Pain from sitting down more at home than in the office.
 
 Goal is to establish a framework for your directs to be successful, but also for them to build on their successes.
 Second part is the development plan, about which a lot has been written elsewhere.
@@ -110,15 +131,15 @@ Second part is the development plan, about which a lot has been written elsewher
 
 Feedback as the tool that drives improvement.
 Needs to be constant & effective.
-Effective is: <define effective here>
+Effective is: #define effective here
 
 Task relevant & behavioral feedback.
 Task relevant is soft-realtime, behavioral can be more batch-processing so long as you provide specific examples.
 How to deliver realtime feedback to someone about a presentation when it was over video call?  This is the dilemma re. hallway vs. catch on chat.
-< Walk through story about Abby & the "no-prep presentation". Point out how important it was to have given the feedback over video call >
+ Walk through story about Abby & the "no-prep presentation". Point out how important it was to have given the feedback over video call
 
 Point out that chat can easily be misconstrued or misunderstood.
-< Employee who had been fired before after a "can we chat when you have a sec" message. Ominous undertones I was never aware of >
+Employee who had been fired before after a "can we chat when you have a sec" message. Ominous undertones I was never aware of
 Importance, like everything with feedback, of being **very** specific
 
 

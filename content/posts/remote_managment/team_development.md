@@ -129,23 +129,39 @@ Second part is the development plan, about which a lot has been written elsewher
 
 #### Feedback from the comfort of your own home
 
-Feedback as the tool that drives improvement.
-Needs to be constant & effective.
-Effective is: #define effective here
+Entire books have been written about how important feedback is, and how to give it effectively.
+A lot of that advice holds true in a remote world, but some of it goes out the window as well.
+In my experience, the easiest forms of feedback become more difficult, but the hardest become less painful to deliver.
 
-Task relevant & behavioral feedback.
-Task relevant is soft-realtime, behavioral can be more batch-processing so long as you provide specific examples.
-How to deliver realtime feedback to someone about a presentation when it was over video call?  This is the dilemma re. hallway vs. catch on chat.
- Walk through story about Abby & the "no-prep presentation". Point out how important it was to have given the feedback over video call
+The simplest feedback (but by no means easy)- task-relevant feedback - is best when given in the context of the task itself.
+For example, if I want to give someone feedback on a presentation they just gave, I'll chat with them for a couple of minutes immediately after it ends.
+This makes for a short, informal conversation while the entire experience is still fresh for both of us.
+Providing the same type of feedback after someone delivers a remote presentation is a little bit more difficult.
 
-Point out that chat can easily be misconstrued or misunderstood.
-Employee who had been fired before after a "can we chat when you have a sec" message. Ominous undertones I was never aware of
-Importance, like everything with feedback, of being **very** specific
+When we're co-located, its easy to catch your report's eye and share a few words.
+But when you're remote, you need to send them an email or chat message & hope they haven't stepped away for 20 minutes.
+The core problem here is that feedback that is inherently synchronous with the presentation becomes async when you're remote.
+You can learn to make this work, but its more work than providing in-person task-relevant feedback.
 
+On the other hand, there are the excruciating conversations about under-performance or behaviors that need correcting.
+In-person, its easy and entirely human to blunt your message, even just a little bit, as you pick up on the other person's discomfort via various physical cues.
+This is very bad because you end up conveying something subtly different than you've intended, but probably feel like you had _exactly_ the conversation you planned.
+As a result, providing corrective feedback is difficult for me (and probably every manager).
+But when I'm remote I miss out on some of the physical cues that can derail my message.
+The slight delay, subtly different voice, and generally only seeing the shoulders up (rather than the nervous foot tapping & pen fidgeting) means I'm able to deliver **exactly** the message I need to.
 
-Importance of task-relevant feedback
+Granted, every situation is different, and these conversations all get easier with practice.
+My point is that the effort-gap between providing quick, targeted task-relevant and painful corrective behavior feedback narrows a little bit when you're managing a remote team.
+
+Here's my checklist for delivering effective feedback to remote reports:
+[ ] If you have any worries about your feedback losing some important nuance, deliver it via video or phone call
+[ ] Don't leave someone a chat message that says "Hey, can we chat?", always mention what you want to talk about: "Hey, can we talk about your presentation? There's something I'd like you to focus on for next time.". This avoids creating unnecessary anxiety as people wonder what you want to talk about.
+[ ] Always make sure nobody else can join your call/ video meeting.
+[ ] Following the feedback, if you think its justified, send them a quick note summarizing the action(s) to be taken
+[ ] Just like in person, make sure you adequately prepare for the conversation
 
 #### Grabbing a socially-distant coffee: mentorship
+
 
 Mentoring is hard IRL, even more difficult in many cases when remote.
 How to provide resources beyond yourself to your team?

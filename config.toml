@@ -24,7 +24,6 @@ github = "ChrisCoffey"
 [taxonomies]
     tag = "tags"
 
-
 [languages]
 [languages.en]
 weight = 1

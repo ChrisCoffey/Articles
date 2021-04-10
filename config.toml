@@ -2,7 +2,6 @@ baseURL = "https://www.foldl.io"
 languageCode = "en-us"
 defaultContentLanguage = "en"
 title = "Foldl: Programming Musings"
-theme = "techlog-simple"
 rssLimit = 10  # Maximum number of items in the RSS feed.
 pygmentsCodeFences = true
 pygmentsStyle = "friendly"

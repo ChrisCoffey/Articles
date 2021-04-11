@@ -1,0 +1,21 @@
+{{ define "header" }}
+<h1>Tags</h1>
+{{end}}
+
+{{define "main" }}
+    <div class="row">
+    {{ range .Pages }}
+      <div class="col-6 mt-3">
+        <article>
+          <section>
+            <a href="{{.Permalink}}"> {{ .Title }} </a>
+          </section>
+          <section class="inset">
+            {{ $pageCount := len .Pages }}
+            <p>{{ $pageCount }} post{{ if ne $pageCount 1 }}s{{ end }} </p>
+          </section>
+        </article>
+      </div>
+    {{ end }}
+
+{{end}}

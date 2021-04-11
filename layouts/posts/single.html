@@ -1,10 +1,49 @@
 {{ define "main" }}
-<header>
-  <h2>
-    {{.Title}}
-  </h2>
-</header>
-<div>
-  {{.Content}}
-</div>
+<section id="main">
+  <h1 id="title">{{ .Title }}</h1>
+
+  <section>
+    <p id="date" class="text-muted">
+    <em>{{ .Date.Format "Mon Jan 2, 2006" }}</em>, {{ .WordCount }} Words
+    <p/>
+
+    {{ with .Params.tags }}
+    <ul id="tags" class="list-group list-group-horizontal">
+      {{ range . }}
+        <li class="badge badge-light">
+          <a href="{{ "tags/" | absURL }}{{ . | urlize }}">{{ . }}</a>
+        </li>
+      {{ end }}
+    </ul>
+    {{ end }}
+  </section>
+
+  <div>
+    <article id="content">
+        {{ .Content }}
+    </article>
+
+  </div>
+</section>
+
+
+<aside id="meta" class="row">
+  <div class="col-6">
+    {{ with .PrevInSection }}
+      <span> << </span>
+      <a class="previous" href="{{.Permalink}}"> {{.Title}}</a>
+    {{ end }}
+
+  </div>
+  <div class="col-6">
+    {{ with .NextInSection }}
+      <a class="next" href="{{.Permalink}}"> {{.Title}}</a>
+      <span> >></span>
+    {{ end }}
+  </div>
+
+  <div class="mt-3">
+  {{ template "_internal/disqus.html" . }}
+  </div>
+</aside>
 {{ end }}

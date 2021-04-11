@@ -6,14 +6,42 @@
       <!-- Blocks may include default content. -->
       {{ .Site.Title }}
     {{ end }}</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/sandstone/bootstrap.min.css"/>
+    {{ partial "analytics.html" . }}
   </head>
-  <body>
-    <!-- Code that all your templates share, like a header -->
-    {{ block "main" . }}
-      <!-- The part of the page that begins to differ between templates -->
-    {{ end }}
-    {{ block "footer" . }}
-    <!-- More shared code, perhaps a footer but that can be overridden if need be in  -->
-    {{ end }}
+  <body class="d-flex flex-column min-vh-100">
+    <div class="container">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/tags">Topics</a>
+        </li>
+        <!-- TODO pin About to the right-->
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+      </ul>
+
+      <div class="container">
+        <div class="my-3">
+          {{ block "header" . }}
+          {{end}}
+        </div>
+        <!-- Code that all your templates share, like a header -->
+        {{ block "main" . }}
+          <!-- The part of the page that begins to differ between templates -->
+        {{ end }}
+      <div>
+
+      <footer class="mt-auto">
+        footer stuff
+      {{ block "footer" . }}
+      <!-- More shared code, perhaps a footer but that can be overridden if need be in  -->
+      {{ end }}
+      </footer>
+    </div>
   </body>
 </html>

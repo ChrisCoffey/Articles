@@ -25,7 +25,7 @@ The browser's HTML parsing continues, but the render itself is blocked until the
 
 In addition to stylehseets, almost every modern webpage also loads Javascript via `<script>` tags.
 Script tags also block rendering because Javascript can modify the content of the page via DOM manipulations.
-Even `async` or `defer` scripts block rendering, but generally don't immediately stop HTML rendering.
+Even `async` or `defer` scripts impact rendering, but generally don't immediately stop (i.e. block) HTML rendering.
 However, CSS parsing blocks Javascript parsing because Javascript can be used to query for the layout impact of CSS on an element.
 
 So, to correctly render a webpage the browser navigates the stop-start CRP dance.

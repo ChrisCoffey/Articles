@@ -3,4 +3,4 @@ title: "Welcome to foldl"
 
 ---
 
-This is my default homepage
+I'm in the middle of a website redesign, but all of the old (often embarrassingly poorly written) content is still here.

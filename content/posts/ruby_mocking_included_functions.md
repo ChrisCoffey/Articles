@@ -1,7 +1,7 @@
 ---
 title: "Know your tools: a facepalm-worthy lesson"
 date: 2020-02-05T06:06:56-05:00
-draft: false
+draft: true
 tags:
   - Ruby
 ---

@@ -10,7 +10,7 @@
     {{ with .Params.tags }}
     <ul id="tags" class="list-group list-group-horizontal">
       {{ range . }}
-        <li class="badge badge-light">
+        <li class="badge badge-light mr-4">
           <a href="{{ "tags/" | absURL }}{{ . | urlize }}">{{ . }}</a>
         </li>
       {{ end }}

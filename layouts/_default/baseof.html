@@ -2,38 +2,54 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <title>
       {{ .Site.Title }}
     </title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/sandstone/bootstrap.min.css"/>
     <link rel="stylesheet" href="/styles/app.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css"/>
 
     {{ partial "analytics.html" . }}
   </head>
   <body class="d-flex flex-column min-vh-100">
     <div class="container">
-      <ul class="nav">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/tags">Topics</a>
-        </li>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
 
-        <li class="nav-item">
-          <a class="nav-link" href="/posts/reading_list">Recommended Books</a>
-        </li>
+            <a href="/" class="navbar-brand">Foldl</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navItems" aria-controls="navItems" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <li class="nav-item">
-          <a class="nav-link" href="/currently_reading">Currently Reading</a>
-        </li>
+            <div class="collapse navbar-collapse" id="navItems">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/tags">Topics</a>
+                </li>
 
-        <!-- TODO pin About to the right-->
-        <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
-        </li>
-      </ul>
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/reading_list">Recommended Books</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="/currently_reading">Currently Reading</a>
+                </li>
+
+                <!-- TODO pin About to the right-->
+                <li class="nav-item">
+                  <a class="nav-link" href="/about">About</a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </nav>
+    </div>
 
       <div class="container">
         <div class="my-3">
@@ -52,5 +68,8 @@
       {{ end }}
       </footer>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

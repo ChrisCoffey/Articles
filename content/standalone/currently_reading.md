@@ -15,9 +15,6 @@ About five years ago I had a very bad experience with Wildly Important Goals (WI
 #### Designing Data Intensive Applications
 I'm working through this as part of a book club with a colleague. I started reading the PDF version, but I can't get through ebooks on a laptop/monitor so I ended up grabbing the paper copy. I'm a big fan of databases, and thus far I've been impressed by how much depth this book brings.
 
-#### Ringworld
-I love sci-fi of all kinds, but particularly hard sci-fi. Ringworld is a classic I recently received as a gift.
-
 #### Linear Algebra and its Applications
 I'm not sure its fair to say one's _reading_ a maths textbook, but I've been working through this classic introductory linear algebra text. I have a liberal arts education and unfortunately there are some large gaps in my basic mathematical skills. So, I borrowed this from my brother.
 

@@ -2,7 +2,7 @@
 <section id="main">
   <h1 id="title">{{ .Title }}</h1>
 
-  <section>
+  <section class="mb-2">
     <p id="date" class="text-muted">
     <em>{{ .Date.Format "Mon Jan 2, 2006" }}</em>, {{ .WordCount }} Words
     <p/>
@@ -27,23 +27,27 @@
 </section>
 
 
-<aside id="meta" class="row">
-  <div class="col-6">
-    {{ with .PrevInSection }}
-      <span> << </span>
-      <a class="previous" href="{{.Permalink}}"> {{.Title}}</a>
-    {{ end }}
+<aside id="meta" class="border-top">
+  <div class="pt-4 row">
+    <div class="col-auto mr-auto col-s-4">
+      {{ with .PrevInSection }}
+        <span><</span>
+        <a class="previous" href="{{.Permalink}}"> {{.Title}}</a>
+      {{ end }}
 
-  </div>
-  <div class="col-6">
-    {{ with .NextInSection }}
-      <a class="next" href="{{.Permalink}}"> {{.Title}}</a>
-      <span> >></span>
-    {{ end }}
+    </div>
+    <div class="col-auto col-s-4">
+      {{ with .NextInSection }}
+        <a class="next" href="{{.Permalink}}"> {{.Title}}</a>
+        <span>></span>
+      {{ end }}
+    </div>
   </div>
 
-  <div class="mt-3 w-100">
-    {{ template "_internal/disqus.html" . }}
+  <div class="row">
+    <div class="mt-3 w-100 col-12">
+      {{ template "_internal/disqus.html" . }}
+    </div>
   </div>
 </aside>
 {{ end }}

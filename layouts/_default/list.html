@@ -10,6 +10,9 @@
         <article>
           <section>
             <a href="{{.Permalink}}"> {{ .Title }} </a>
+            <p class="text-muted">
+              {{.Summary}}
+            </p>
           </section>
           <section class="inset">
             <span id="date"> {{ .Date.Format "Mon Jan 2, 2006" }} </span>

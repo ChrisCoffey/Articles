@@ -52,15 +52,16 @@
     </div>
 
       <div class="container">
-        <div class="my-3">
+        <div class="my-3 row">
           {{ block "header" . }}
           {{end}}
         </div>
         <!-- Code that all your templates share, like a header -->
+        <div>
         {{ block "main" . }}
           <!-- The part of the page that begins to differ between templates -->
         {{ end }}
-      <div>
+        </div>
 
       <footer class="mt-auto">
       {{ block "footer" . }}

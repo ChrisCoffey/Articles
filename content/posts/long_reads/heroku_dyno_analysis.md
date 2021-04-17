@@ -45,29 +45,34 @@ Whether the machine itself is dedicated to the dyno or whether CPUs are pinned t
 #### Ramifications of timesharing in the cloud
 
 Cloud computing is all about running giant clusters of commodity hardware and renting time on them to users.
-The main reason to prefer commodity hardware over the more exotic machines used for high-performance clusters is their cost; cloud vendors are able to purchase far more machines & abstract away the differences between them.
+The main reason to prefer commodity hardware over the more exotic machines used for high-performance clusters is their cost; cloud vendors purchase a variety of relatively inexpensive machines & abstract away the differences between them.
+As a user of cloud machines, you're typically buying access to a virtual machine running atop some of this commodity hardware - although many vendors have begun offering bare-metal instances.
+That's great, but it does mean that there is some variability in the machine's performance because of variations in the underlying hardware.
+VMs running on older hardware may perform differently than those running new hardware, even if they're they same instance class.
+Plus, the processes will be running on a VM rather than bare metal, so there will be an imperceptible (for most applications) performance hit from that.
+
+Using cloud machines rather than hosting your own is making the decision that the increased variability in machine performance is worth the increased ease with which instances are provisioned and managed.
+Choosing to use a PaaS rather than an IaaS is like making that decision twice.
+Not only are you choosing to outsource managing the physical machines to a cloud provider, you're also choosing to outsource managing the cloud compute resources.
+That could be a great business decision, but its important to note that many (all?) PaaS providers build their orchestration infrastructure on top of cloud instances.
+For a dedicated instance in something like Herkou's CR, this doesn't have much of an impact because the container in question is given the full resources of the machine - after accounting for cluster daemons and whatnot.
+
+For multi-tenant nodes (also known as "timeshared"), this story gets more complicated and scheduling priority becomes very important.
+In a timeshared system the CPU is shared between many processes, with each process getting _some_, but not necessarily equal CPU cycles.
+For PaaS providers, its in their best interest to cram as many containers as possible onto a given node in the cluster in order to maximize their profit.
+So something like Heroku's CR dyno manager is going to look at node utilization and try to maintain the highest _safe_ usage rate across each node.
+As a result, containers running on those nodes need to contend with each other for resources, and their workloads can impact each other.
+This dramatically increases variability in CPU bound workloads.
+
+Providers like Heroku that have multiple timeshared offerings (`free`, `hobby`, `standard-1x`, `standard-2x`) provide different performance characteristics depending on the tier.
+That means lower tiered processes on the same cluster node will receive less processor time than their more expensive peers.
+I'm unsure of the exact mechanism the Heoku uses to differentiate scheduling, but Docker allows passing memory & cpu restrictions to `Docker run`.
+I imagine Herkou uses some combination of `setpriority()` and something like `ulimit`.
+
+### Exploring CPU-intensive workload variability
 
 
 
-- Contrast with running EC2 or ECS
-  - vCPU depending on instance size
-  - Cloud computing all about commodity hardware
-    - As a result, actual machines often vary a bit and it is normal to see that variation leak through to instances occasionally
-      - This is the "bad instance" you'll hear about sometimes
-  - Different classes of Dynos with different cost points & performance
-    - free vs. paid vs. perf as three "tiers"
-      - Some features unlock at transition from free -> paid, and others at hobby -> standard.
-      - But tiers are mostly about performance
-    - Most classes on common runtime are on shared vCPUs
-    - How much does being on a shared vCPU hurt your app's performance?
-- Brief foray though how timesharing machines work
-  - Many VMs/ containers running on a machines
-  - Sharing memory, bus, and CPU time
-  - Scheduler allocates time with CPU
-    - When scheduled, needs to reload context from memory into the caches, then pick up work where it was left off
-    - Some workloads this can be really expensive, particularly when they're CPU+Memory intensive like parsing a big JSON objects
-    - Cycled out once the process' timeslice elapses. Must use preemptive multitasking to ensure approximately "fair" resource usage
-      - sidebar w/ bit on cooperative vs. preemptive multitasking?
 - My experiment
   - Explain the situation at work where we had terrible long-tail performance with CPU-heavy workloads
   - Experiment design:

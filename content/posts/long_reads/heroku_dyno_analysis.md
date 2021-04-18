@@ -1,5 +1,5 @@
 ---
-title: "How to think about Heroku dyno performance"
+title: "Understanding variability in Heroku dyno performance"
 date: 2021-04-15T16:07:29-04:00
 draft: true
 tags: ["performance", "hosting"]
@@ -9,6 +9,8 @@ Heroku is a great platform if your app conforms to their expectations, but many 
 It is surprisingly easy to deploy an application that behaves differently than you'd expect, although their documentation does warn about this.
 In this post I explain how I think about Heroku's abstractions.
 I also share some research on the performance/behavior of their various dyno classes and my recommendations for which classes to select vs. avoid.
+
+If you're familiar with Heroku's platform, I suggest skipping ahead to [exploring CPU-intensive workloads](#exploring-cpu-intensive-workload-variability).
 
 ### Platform overview
 
@@ -67,10 +69,78 @@ This dramatically increases variability in CPU bound workloads.
 Providers like Heroku that have multiple timeshared offerings (`free`, `hobby`, `standard-1x`, `standard-2x`) provide different performance characteristics depending on the tier.
 That means lower tiered processes on the same cluster node will receive less processor time than their more expensive peers.
 I'm unsure of the exact mechanism the Heoku uses to differentiate scheduling, but Docker allows passing memory & cpu restrictions to `Docker run`.
-I imagine Herkou uses some combination of `setpriority()` and something like `ulimit`.
+I imagine Herkou uses some combination of `setpriority()` and something like `ulimit`, rather than implementing something bespoke.
 
 ### Exploring CPU-intensive workload variability
 
+This post was inspired by highly variable response times in services running on shared Herkou dynos, particularly when parsing JSON.
+Large blocks of JSON - single-digit mB - require translating raw bytes into in-memory data structures.
+In most languages I've worked with that requires a large number of CPU cycles, and milliseconds of processing time.
+On a crowded shared Herkou node, regardless of whether you're running a `free` or a `standard-2x`, you're going to see a lot of variance in this type of workload.
+Unfortunately, I couldn't find anything describing what was actually going on here.
+
+On a certain level, not understanding what happens beneath Herkou's abstractions is a feature rather than a bug.
+But, in the interest of uncovering a few more details, I ended up [benchmarking](#benchmarking-heroku) Heroku with a CPU intensive workload.
+I describe the benchmark in detail at the end of this post, but essentially it preformed 10k JSON deserializations for a large JSON file on each size dyno and collected some stats about them.
+
+TODO: Label axes
+
+
+Each point in this scatter plot represents 100 JSON deserializations, with `x` position representing median duration and `y` position representing tail height.
+The size of each point increases as the p90 duration for a sample increases.
+As clusters grow taller, it indicates the variation between the median and p90 deserialization time has increased; in other words how fat the tail for this group of samples was.
+As clusters widen, there is more variance in the median duraiton.
+
+![Dyno benchmarking](/assets/images/heroku/performance_scatter.png)
+
+There are clear difference between the shared & dedicated dyno sizes.
+That comes as no surprise, but it was interesting to see that the fastest `free` samples were faster than the slowest `hobby` or `standard-1x` dynos.
+I had assumed that `free` were relegated to the cheapest possible underlying instance type, but it appears that may not be the case (more on this in a moment).
+Otherwise, its also surprising that the paid+shared dyno classes - `hobby`, `standard-1x`, `standard-2x` - blend together to the degree they do.
+
+The benchmark and visualization illustrate more less what Heroku's documentation says about the different dyno classes.
+`free`, `hobby`, and `standard-1x` all have the same degree of "CPU share", which seems to correspond to the width of the clusters.
+`standard-2x`, with its double CPU share, has a much tighter cluster.
+Then there are the dedicated instances with extremely tight clusters of small points, indicating consistently quick performance.
+
+#### Behind the abstraction
+
+After observing the benchmark performance across dyno classes, I became curious what the underlying AWS instances were for each of the dyno classes.
+In particular, were `free` dynos running on the same instances as paid dynos?
+Did a dedicated dyno in a `performance` class have its own AWS instance, or were they also clustered, but in such a way that there were always CPUs available for them?
+
+Thankfully, because Linux containers are essentially sandboxed apps on an underlying kernel, its possible to poke at the underlying kernel a bit.
+Launching a one-off dyno of each instance class via `heroku run bash --app <app here> --size <dyno class>` makes it trivial to poke at kernel info.
+I initially checked `uname -a` for each dyno class, and found all of them running the same version of AWS linux.
+Nothing surprising there.
+
+Next up was taking a look at `/proc/cpuinfp` and `/proc/meminfo` to determine what the underlying instances for each dyno class are.
+The following table lays out the results:
+
+Dyno class | Num cores   | Core type   | Memory
+--|--|--|---
+free | 8 core | Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz | 64GB
+hobby | 8 core | Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz | 64GB
+standard-1x | 8 core | Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz | 64GB
+standard-2x | 8 core | Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz | 64GB
+performance-m | 2 core | Intel(R) Xeon(R) CPU E5-2680 v2 @ 2.80GHz | 4GB
+performance-l | 8 core | Intel(R) Xeon(R) CPU E5-2680 v2 @ 2.80GHz | 16 GB
+
+Turns out that **all** shared CPU dynos run on the same type of node.
+That actually makes a lot of sense from an infrastructure management perspective, but THINGS TO SAY ABOUT THIS???.
+Additionally, each performance dyno runs on its own dedicated instance.
+Armed with the instance specs, its not too difficult to lookup the underlying AWS instance type.
+
+The shared cpu dynos appear to run on storage optimized instances, which initially puzzled me.
+But it actually makes a fair bit of sense when remembering that Herkou is running Linux containers.
+Each container consumes a relatively limited amount of memory, but could consume several GB of space on disk.
+So if you wanted to pack as many containers onto a machine as possible, you'd want something that could store a lot of decompressed images.
+
+Performance dynos unsurprisingly appear to run on compute optimized instances, which is exactly what Heroku bills them as.
+
+### Recommendations
+
+##### Benchmarking Herkou
 
 
 - My experiment

@@ -4,7 +4,6 @@ date: 2021-04-15T16:07:29-04:00
 draft: true
 tags: ["performance", "hosting"]
 ---
-
 Heroku is a great platform if your app conforms to their expectations, but many of their abstractions are leaky.
 It is surprisingly easy to deploy an application that behaves differently than you'd expect, although their documentation does warn about this.
 In this post I explain how I think about Heroku's abstractions.
@@ -83,15 +82,12 @@ On a certain level, not understanding what happens beneath Herkou's abstractions
 But, in the interest of uncovering a few more details, I ended up [benchmarking](#benchmarking-heroku) Heroku with a CPU intensive workload.
 I describe the benchmark in detail at the end of this post, but essentially it preformed 10k JSON deserializations for a large JSON file on each size dyno and collected some stats about them.
 
-TODO: Label axes
-
-
 Each point in this scatter plot represents 100 JSON deserializations, with `x` position representing median duration and `y` position representing tail height.
 The size of each point increases as the p90 duration for a sample increases.
 As clusters grow taller, it indicates the variation between the median and p90 deserialization time has increased; in other words how fat the tail for this group of samples was.
-As clusters widen, there is more variance in the median duraiton.
+As clusters widen, there is more variance in the median duration.
 
-![Dyno benchmarking](/assets/images/heroku/performance_scatter.png)
+{{< heroku_experiment_viz >}}
 
 There are clear difference between the shared & dedicated dyno sizes.
 That comes as no surprise, but it was interesting to see that the fastest `free` samples were faster than the slowest `hobby` or `standard-1x` dynos.
@@ -138,8 +134,6 @@ So if you wanted to pack as many containers onto a machine as possible, you'd wa
 
 Performance dynos unsurprisingly appear to run on compute optimized instances, which is exactly what Heroku bills them as.
 
-### Recommendations
-
 ##### Benchmarking Herkou
 
 
@@ -162,3 +156,4 @@ Performance dynos unsurprisingly appear to run on compute optimized instances, w
       - Density per-$, along with vCPU & RAM
 - Mention that we ended up going w/ larger instances for reasons unrelated to cluster density, but we saw our long-tail latency disappear
 - With that in mind, happy capacity planning
+{{< pretty_tables >}}

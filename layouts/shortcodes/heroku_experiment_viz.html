@@ -1,0 +1,147 @@
+<script type="text/javascript" src="https://d3js.org/d3.v6.js">
+</script>
+<div id="scatter">
+</div>
+<script type="text/javascript">
+  const h=900;
+  const w=1000
+  const dataset = {
+      free: {file: "data/heroku_experiment/string_results_free.json", color: "purple", label: "Free"}
+    ,hobby: {file: "data/heroku_experiment/string_results_hobby.json", color: "#ffa600", label: "Hobby"}
+    ,standard: {file: "data/heroku_experiment/string_results_standard1.json", color: "cyan", label: "Standard 1x"}
+    ,standardTwo: {file: "data/heroku_experiment/string_results_standard2x_2.json", color: "red", label: "Standard 2x"}
+    ,perfM: {file: "data/heroku_experiment/string_results_perf-m.json", color: "blue", label: "Performance-M"}
+    ,perfL: {file: "data/heroku_experiment/string_results_perf-l.json", color: "#ff764a", label: "Performance-L"}
+    ,local: {file: "data/heroku_experiment/string_results_local.json", color: "#374c80", label: "Local (MBP)"}
+    }
+
+  dataset.keys = Object.keys(dataset)
+
+  // local state for computing ranges
+  var med_min = p90_min = min_gap = Infinity
+  var med_max = p90_max = max_gap = -Infinity
+
+  var x_scale = null
+  var y_scale = null
+  var radius_scale = null
+
+  Promise.all(
+    // Fetch all the data
+    dataset.keys.map( (key) => {
+      return d3.json(`/${dataset[key].file}`)
+        .then( (data) => { dataset[key].data = data })
+    })
+  ).then(() => {
+    // determine the boundaries
+    dataset.keys.forEach( (key) => {
+      data = dataset[key].data
+
+      med_min = Math.min(med_min, d3.min(data, d => d.median/1000000))
+      med_max = Math.max(med_max, d3.max(data, d => d.median/1000000))
+      p90_min = Math.min(p90_min, d3.min(data, d => d.p90/1000000))
+      p90_max = Math.max(p90_max, d3.max(data, d => d.p90/1000000))
+
+      // TODO: compute a percentage gap?
+      min_gap = Math.min(min_gap, d3.min(data, d => d.p90/1000000 - d.median/1000000))
+      max_gap = Math.max(max_gap, d3.max(data, d => d.p90/1000000 - d.median/1000000))
+    })
+  }).then( () => {
+    // Generate scales
+    x_scale = d3.scaleLinear()
+                .domain([med_min, med_max])
+                .range([80, w-5])
+
+    y_scale = d3.scaleLinear()
+                .domain([max_gap, min_gap])
+                .range([20, h-20])
+
+    radius_scale = d3.scaleLinear()
+                      .domain([p90_min, p90_max])
+                      .range([1,5])
+  }).then( () => {
+    // Render the scatterplot
+    const xAxis = g => g
+      .attr("transform", `translate(0, ${h-20})`)
+      .call(d3.axisBottom(x_scale).tickFormat(d3.format("~s")))
+
+    const yAxis = g => g
+      .attr("transform", `translate(75, 0)`)
+      .call(d3.axisLeft(y_scale).tickFormat(d3.format("~s")))
+
+    const svg = d3.select("#scatter")
+                  .append("svg")
+                  .attr("viewBox", [0,0,h,w])
+                  .attr("height", h)
+                  .attr("width", w)
+
+    // adds the axes to the scatterplot
+    svg.append("g")
+      .call(xAxis)
+    svg.append("text")
+      .attr("x", w/2)
+      .attr("y", h+30)
+      .attr("font-size", "x-large")
+      .text("median batch run (ms)")
+
+    svg.append("g")
+      .call(yAxis)
+    svg.append("text")
+      .attr("y", 10)
+      .attr("x", -(w/2))
+      .attr("font-size", "x-large")
+      .attr("transform", "rotate(-90)")
+      .text("gap between median and 90th percentile (ms)")
+
+
+    svg.selectAll("labels")
+      .data(dataset.keys)
+      .enter()
+      .append("text")
+        .attr("x", 120)
+        .attr("y", (key,i) => { return 100 + i*25})
+        .style("fill", (key) => { return dataset[key].color })
+        .text(key => dataset[key].label)
+        .attr("text-anchor", "left")
+        .attr("font-size", "20px")
+        .style("alignment-baseline", "middle")
+
+    // add each dataset
+    dataset.keys.forEach( (key) => {
+      const g = svg.append("g")
+
+      const data = dataset[key].data
+
+      const node = g.selectAll("circle")
+        .data(data)
+        .enter().append("circle")
+          .attr("cx", (d) => { return x_scale(d.median/1000000)  })
+          .attr("cy", (d) => { return y_scale(d.p90/1000000 - d.median/1000000) })
+          .attr("r", (d) => { return radius_scale(d.p90/1000000) })
+          .attr("stroke", dataset[key].color)
+          .attr("fill", dataset[key].color)
+          .on("mouseover", onEnter)
+          .on("mouseout", onExit)
+          .each(function(d){ d.circle = this })
+
+      node.append("title")
+        .text(d => `${dataset[key].label}
+
+median: ${d.median / 1000000}
+min: ${d.min/ 1000000}
+max: ${d.maximum/ 1000000}
+p90: ${d.p90/ 1000000}
+gap: ${(d.p90 - d.median)/1000000}`)
+
+    })
+
+    function onEnter(_, d) {
+      d3.select(d.circle).attr("r", "10")
+    }
+
+    function onExit(_, d) {
+      d3.select(d.circle).attr("r", radius_scale(d.p90/ 1000000))
+    }
+
+  });
+
+</script>

@@ -110,7 +110,7 @@ Launching a one-off dyno of each instance class via `heroku run bash --app <app 
 I initially checked `uname -a` for each dyno class, and found all of them running the same version of AWS linux.
 Nothing surprising there.
 
-Next up was taking a look at `/proc/cpuinfp` and `/proc/meminfo` to determine what the underlying instances for each dyno class are.
+Next up was taking a look at `/proc/cpuinfp` and `/proc/meminfo` to determine what the underlying instances for each dyno class are as of April 2021.
 The following table lays out the results:
 
 Dyno class | Num cores   | Core type   | Memory
@@ -134,7 +134,22 @@ So if you wanted to pack as many containers onto a machine as possible, you'd wa
 
 Performance dynos unsurprisingly appear to run on compute optimized instances, which is exactly what Heroku bills them as.
 
+### What it all means
+
+By this point two things are clear.
+First, the shared vs. dedicated dyno options at Heroku have vastly different performance profiles.
+These differences in performance are less about per-core speed than they are about the variance.
+Secondly, while dynos within the same "tier" demonstrate different performance characteristics from one another, they are not significant on a per-core level.
+The inter-tier differences come from memory and core count, which isn't particularly surprising.
+
+My hope is that by providing you with a deeper understanding of how Heroku's different dyno classes perform - albeit in a contrived benchmark - you'll be better able to evaluate which one is the best fit for your application's workload.
+For example, if you're running a webserver with a fairly low memory footprint that mostly performs CRUD, an auto-scaled cluster of shard-CPU dynos is probably the most cost-effective solution.
+On the other hand, if the application provides middleware on the critical path for a frontend server you likely care a lot about having consistent performance, so one of the dedicated dynos would be a better fit.
+Unfortunately Herkou's documentation doesn't illustrate just how divergent the behavior of these two classes are, so I've had to learn the hard way.
+Hopefully this post helps you avoid most of my mistakes around sizing dynos to application needs.
+
 ##### Benchmarking Herkou
+
 
 
 - My experiment

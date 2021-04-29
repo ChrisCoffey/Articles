@@ -97,9 +97,13 @@ The benchmark and visualization illustrate more or less what Heroku's documentat
 `standard-2x`, with its double CPU share, has a tighter cluster, but still exhibits high variance.
 Then there are the dedicated instances with extremely tight clusters of small points, indicating consistently quick performance.
 
-The following illustration shows how the variance changes based on instance type.
+The following illustration shows how the average variance changes based on dyno type.
 
-VARIANCE DIAGRAM HERE
+{{< heroku_variance_viz >}}
+
+There is about an order of magnitude difference in the variance between a `perform-l` and the shared dynos.
+Granted, that difference amounts to ~45ms which is likely just noise for many workloads.
+And at (at least) 10x the price, a `performance-l` is difficult to justify for anything besides a professional application.
 
 #### Behind the abstraction
 
@@ -107,7 +111,7 @@ After observing the benchmark performance across dyno classes, it's worth asking
 In particular, were `free` dynos running on the same instances as paid dynos?
 Did a dedicated dyno in a `performance` class have its own AWS instance, or were they also clustered, but in such a way that there were always CPUs available for them?
 
-Thankfully, because Linux containers are essentially sandboxed apps on an underlying kernel, its possible to poke at the kernel a bit.
+Thankfully, because Linux containers are essentially sandboxed apps on an underlying kernel, its possible to poke around a bit.
 Launching a one-off dyno of each instance class via `heroku run bash --app <app here> --size <dyno class>` makes it trivial to extract some basic information about the underlying instance.
 I initially checked `uname -a` for each dyno class, and found all of them running the same version of AWS linux.
 Nothing surprising there.

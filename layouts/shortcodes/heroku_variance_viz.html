@@ -1,0 +1,63 @@
+<script type="text/javascript" src="https://d3js.org/d3.v6.js">
+</script>
+<div id="variance">
+</div>
+<script type="text/javascript">
+    function gen_variance(){
+        const h=180;
+        const w=600;
+        const dataset = {
+            free: {file: "data/heroku_experiment/string_results_free.json", color: "purple", label: "Free"}
+          ,hobby: {file: "data/heroku_experiment/string_results_hobby.json", color: "#ffa600", label: "Hobby"}
+          ,standard: {file: "data/heroku_experiment/string_results_standard1.json", color: "cyan", label: "Standard 1x"}
+          ,standardTwo: {file: "data/heroku_experiment/string_results_standard2x_2.json", color: "red", label: "Standard 2x"}
+          ,perfM: {file: "data/heroku_experiment/string_results_perf-m.json", color: "blue", label: "Performance-M"}
+          ,perfL: {file: "data/heroku_experiment/string_results_perf-l.json", color: "#ff764a", label: "Performance-L"}
+          ,local: {file: "data/heroku_experiment/string_results_local.json", color: "#374c80", label: "Local (MBP)"}
+          }
+        dataset.keys = ['perfL', 'local', 'perfM', 'standardTwo', 'standard', 'hobby', 'free'];
+
+        const svg = d3.select("#variance")
+          .append("svg")
+            .attr('height', h)
+            .attr('width', w)
+
+        const data_thunks = dataset.keys.map( (key, i) => {
+          return d3.json("/" + dataset[key].file).then( (data) => {
+            dataset[key].data = data
+
+            const len = data.length;
+            let variance = data.map( (d) => d.p90/1000000 - d.median/1000000 ).reduce((a, b) => a + b) / len;
+            dataset[key].variance = variance;
+          })
+        })
+
+        Promise.all(data_thunks).then( () => {
+          let prev_x = 0
+          dataset.keys.forEach( (key) => {
+            svg.append('rect')
+                .attr('width', dataset[key].variance)
+                .attr('height', dataset[key].variance)
+                .attr('x', prev_x + 5)
+                .attr('fill', dataset[key].color)
+                .append("title")
+                  .text(dataset[key].label)
+            prev_x += 5 + dataset[key].variance;
+          })
+
+
+          svg.selectAll("labels")
+            .data(dataset.keys)
+            .join('text')
+              .attr("x", prev_x + 20)
+              .attr("y", (key,i) => { return 15 + i*25})
+              .style("fill", (key) => { return dataset[key].color })
+              .text(key => dataset[key].label + ": " + (Math.trunc(dataset[key].variance * 100) / 100) + "ms")
+              .attr("text-anchor", "left")
+              .attr("font-size", "15px")
+              .style("alignment-baseline", "middle")
+    })
+  }
+
+  gen_variance()
+</script>

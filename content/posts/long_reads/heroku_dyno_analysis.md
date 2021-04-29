@@ -1,10 +1,10 @@
 ---
 title: "Understanding variability in Heroku dyno performance"
 date: 2021-04-15T16:07:29-04:00
-draft: true
+draft: false
 tags: ["performance", "hosting"]
 ---
-Heroku is a great platform if your app conforms to their expectations, but their dyno abstraction is leaky.
+Heroku is a great platform if your app conforms to their expectations, but their dyno abstraction is somewhat leaky.
 It is surprisingly easy to deploy an application that behaves differently than you'd expect despite their documentation's warnings about shared CPUs.
 In this post I share some research on the performance/behavior of their various dyno classes and how I think about selecting dynos for different workloads.
 

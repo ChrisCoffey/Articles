@@ -17,7 +17,7 @@ I do not have any specific or privileged knowledge of _how_ Heroku works, nor ha
 Heroku is one of, if not _the_, original platform-as-a-service vendors.
 The platform was originally designed to host Ruby on Rails applications that conformed to the [12 Factor App](https://12factor.net/).
 As long as I've been using the platform it has had strong opinions about how applications should be architected and offered an incredible developer experience if you say within the bounds.
-Heroku is essentially a container orchestration platform, and while they started by building containers automatically based on Git pushes - albeit for a limited number of languages -, these days they also offer direct support for Docker containers.
+Heroku is essentially a container orchestration platform, and while they started by building containers automatically based on Git pushes - albeit for a limited number of languages - these days they also offer direct support for Docker containers.
 As a result, you can deploy any stack you want.
 
 While they may be unfamiliar initially, their in-house abstractions map nicely onto more familiar - or at least more thoroughly documented - concepts from Docker.
@@ -26,7 +26,7 @@ Both slugs and images are compressed tarballs containing the files necessary to 
 Unlike Docker images, which consist of many compressed layers stacked on top of one another, a slug does not have layers.
 
 When you run a Docker image as a container, the image is unpacked by a Docker host and executed.
-By default, Docker is a single-machine tool, so running containers on a cluster of machines requires an orchestrator like Docker Swarm or Kubernettes.
+By default, Docker is a single-machine tool, so running containers on a cluster of machines requires an orchestrator like Docker Swarm or Kubernetes.
 Part of Heroku's value proposition to developers is that they handle all of the orchestration & cluster management via their dyno manager.
 Like other orchestrators, the dyno manager is responsible for container placement and management - making sure dynos restart after a crash, have their log drains attached, etc...
 
@@ -37,7 +37,7 @@ The two runtimes are quite different and optimize for different use cases.
 CR is intended to be highly responsive to creating new applications and dynos, while PS is meant for longer-running processes that can afford slower startup times.
 All of my experience is with CR, and that is what I'll be referring to as Heroku throughout the remainder of this post.
 
-As a multi-tenant environment, Heroku's CR maintains a sizeable cluster of machines in AWS which it uses to allocate new dynos as necessary.
+As a multi-tenant environment, Heroku's CR maintains a sizable cluster of machines in AWS which it uses to allocate new dynos as necessary.
 Heroku allows horizontally scaling applications and makes a best effort to allocate different dynos for the same application into different availability zones, providing some "free" redundancy.
 Additionally, because they have a large cluster of machines up and running at all times, allocating the marginal dyno is typically extremely fast because it doesn't involve allocating any additional nodes to the cluster.
 In other words, the CR provides fast startup times for new dynos because the majority of the dynos running are sharing time with dynos from other customers.
@@ -67,16 +67,16 @@ This dramatically increases variability in CPU-bound workloads.
 
 Heroku has multiple timeshared offerings (`free`, `hobby`, `standard-1x`, `standard-2x`) providing different performance characteristics depending on the tier.
 As a result, lower-tiered processes on the same cluster node receive less processor time than their more expensive peers.
-I'm unsure of the exact mechanism the Heoku uses to differentiate scheduling, but Docker allows passing memory & CPU restrictions to `Docker run`, so I imagine Herkou uses some combination of `setpriority()` and something like `ulimit`, rather than implementing something bespoke.
+I'm unsure of the exact mechanism the Heroku uses to differentiate scheduling, but Docker allows passing memory & CPU restrictions to `Docker run`, so I imagine Heroku uses some combination of `setpriority()` and something like `ulimit`, rather than implementing something bespoke.
 
 ### Exploring CPU-intensive workload variability
 
-This post was inspired by highly variable response times in services running on shared Herkou dynos, particularly when parsing JSON.
+This post was inspired by highly variable response times in services running on shared Heroku dynos, particularly when parsing JSON.
 Parsing large blocks of JSON - multiple Mb - require translating raw bytes into in-memory data structures, which in turn requires many CPU cycles to move data back and forth from main-memory and perform the parsing logic.
-On a crowded shared Herkou node, regardless of whether you're running a `free` or a `standard-2x`, you're going to see a lot of variance in this type of workload.
+On a crowded shared Heroku node, regardless of whether you're running a `free` or a `standard-2x`, you're going to see a lot of variance in this type of workload.
 Unfortunately, I couldn't find anything describing what was going on here.
 
-On a certain level, not understanding what happens beneath Herkou's abstractions is a feature rather than a bug.
+On a certain level, not understanding what happens beneath Heroku's abstractions is a feature rather than a bug.
 But, in the interest of uncovering a few more details, I ended up [benchmarking](#benchmarking-heroku) Heroku with a CPU-intensive workload.
 I describe the benchmark in more detail at the end of this post, but essentially it performed 10k JSON deserializations for a large JSON file on each size dyno and collected some stats about them.
 
@@ -136,7 +136,7 @@ Additionally, the `/proc/cpuinfo` confirms each performance dyno runs on its own
 
 Armed with the instance specs, it is straightforward to look up the underlying AWS instance type.
 The shared CPU dynos appear to run on storage optimized instances.
-That initially puzzled me, but it makes a fair bit of sense when remembering that Herkou is running Linux containers.
+That initially puzzled me, but it makes a fair bit of sense when remembering that Heroku is running Linux containers.
 Each container consumes a relatively limited amount of memory but could consume several GB of space on disk.
 So if you wanted to pack as many containers onto a machine as possible, you'd want something that could store a lot of decompressed images.
 
@@ -153,10 +153,10 @@ The inter-tier differences come from memory and core count, which isn't particul
 I that by providing you with a deeper understanding of how Heroku's different dyno classes perform - albeit in a contrived benchmark - you'll be better able to evaluate which one is the best fit for your application's workload.
 For example, if you're running a webserver with a fairly low memory footprint that mostly performs CRUD, an auto-scaled cluster of shard-CPU dynos is probably the most cost-effective solution.
 On the other hand, if the application provides middleware on the critical path for a frontend server you likely care a lot about having consistent performance, so one of the dedicated dynos would be a better fit.
-Unfortunately, Herkou's documentation doesn't illustrate just how divergent the behavior of these two classes is, so I've had to learn the hard way.
+Unfortunately, Heroku's documentation doesn't illustrate just how divergent the behavior of these two classes is, so I've had to learn the hard way.
 Hopefully this post helps you avoid most of my mistakes around sizing dynos to application needs.
 
-##### Benchmarking Herkou
+##### Benchmarking Heroku
 
 The benchmark used for this experiment was inspired by the behavior observed on production applications across several languages.
 I'd been aware of the variability in response times for a long time, but it wasn't until upgrading a Rails app from shared to dedicated dynos and watching the variability in p99 latency dramatically drop that I began wondering about the exact behavior.

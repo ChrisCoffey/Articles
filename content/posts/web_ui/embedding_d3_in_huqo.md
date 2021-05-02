@@ -1,7 +1,7 @@
 ---
 title: "Using D3 on Hugo pages via Shortcodes"
 date: 2021-05-01T17:07:29-04:00
-draft: true
+draft: false
 tags: ["hugo", "d3"]
 ---
 

@@ -15,8 +15,5 @@ About five years ago I had a very bad experience with Wildly Important Goals (WI
 #### Designing Data Intensive Applications
 I'm working through this as part of a book club with a colleague. I started reading the PDF version, but I can't get through ebooks on a laptop/monitor so I ended up grabbing the paper copy. I'm a big fan of databases, and thus far I've been impressed by how much depth this book brings.
 
-#### Linear Algebra and its Applications
-I'm not sure its fair to say one's _reading_ a maths textbook, but I've been working through this classic introductory linear algebra text. I have a liberal arts education and unfortunately there are some large gaps in my basic mathematical skills. So, I borrowed this from my brother.
-
-#### Web Application Scalability for Startup Engineers
-This one is an in-depth re-read of something I skimmed through several years ago. The re-read is also part of a book club with a colleague. Although this book is rather high-level, we're taking it slowly.
+#### Writing to Learn
+William Zissner's book arguing that writing and thinking are one in the same. I enjoy his writing, and the argument isn't half bad either.

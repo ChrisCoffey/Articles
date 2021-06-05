@@ -25,6 +25,7 @@ They're mostly professional, but there are a few mind-expanding books thrown in 
 - Making Work Visible
 - Accelerate
 - Toyota Production System: Beyond Large-Scale Production
+- The Four Disciplines of Execution
 
 ## Product Management
 - Design of Design

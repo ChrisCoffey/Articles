@@ -1,6 +1,18 @@
 ---
-title: "Serendipity_is_a_bug"
-date: 2020-11-25T23:04:56-05:00
-draft: true
+title: "Serendipity is a bug"
+date: 2021-12-30T23:04:56-05:00
+draft: false
+tags:
+  - remote
+  - management
 ---
 
+Think of a time when you were walking in the hallway or grabbing coffee in the kitchen and chanced upon colleagues discussing a project that impacted you, which you were previously unaware of. Learning about the project is great, but it's hard to argue that this sort of chance encounter is a good way to learn important information. In this post, I explain how serendipitous communication is an organizational bug and point out an approach that improves how information flows in your organization. I didn't discover any of these ideas, but I've experienced the good and the bad over the years.
+
+Serendipitous communication is a symptom of poor or adhoc information dissemination in an organization. Nobody sets out to have information randomly flow around an organization through chance encounters, but instead this pattern arises as the "default" in a group that isn't intentional about their communication. In the chaos of daily work - particularly under time pressure - it's easy to skip the quick actions that produce clear communication. For example, imagine you're working on a project with Alice and Bob. If you speak with Alice about the project during a 1:1 video call, then move the project forward with Bob via a 1:1 email thread later in the day, you've created a communication gap. Because the thread with Bob didn't include Alice, her knowledge of the project can't have moved forwards from where you left it earlier in the day. You and Bob on the other hand may already be taking actions based on your email thread. This quickly leads to misalignment on a team.
+
+While Alice will undoubtedly learn of the project's progress serendipitously during the next checkin, this example illustrates how cycles of 1:1 communication lead to misalignment. The issue isn't exclusively with one-on-one conversations, but actually with decisions or insights that are only shared with _part_ of a group. You can imagine the same issue occurring if there were three teams working on the project and only two were ever in meetings together, and no meeting notes where shared afterwards.
+
+One of the "simplest" ways to avoid this problem is to only have in-person conversations as a last resort. If most communication biases towards inherently asynchronous and durable - and therefore indexable and searchable - mediums like wiki posts or public Slack messages makes it easier for folks to find information they need. Unfortunately, this still requires someone to know what they're searching for and to search for it, so you end up with a new form of serendipity: stumbling on information in Slack that's important and relevant to you. That being said, communication will be significantly improved if information is discoverable and the organization builds up instincts around when and where to find what they may need.
+
+The missing piece for a writing-heavy communication culture is some form of "push notification" to interested parties. At work, we've systematized information pushes by memorializing in-person conversations, which are effectively meeting notes anytime there's a private conversation about something a group is working on. Following the conversation - whether over email, Slack DM, video call, etc... - a recap of what was discussed and any action items is shared with interested parties via a public Slack message. The interested parties are determined based on the classic [RACI chart](https://en.wikipedia.org/wiki/Responsibility_assignment_matrix) for the project. The message is posted in the Slack channel for the responsible group, with the accountable, consulted and informed folks tagged via their Slack handles. It's unquestionably more work than _not_ publishing conversation notes, but in my experience this simple practice saves days of work from misalignment, so it's worth the cost. Your mileage may vary though, particularly if your company culture is biased _away_ from written communication.

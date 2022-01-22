@@ -5,8 +5,6 @@ draft: false
 url: "/about"
 ---
 
-There are so many excellent tech blogs on the internet, so why am I writing yet another tech blog? Honestly, I'm doing this as a forcing function for my own thinking. The idea is that by publically presenting not only the finished product but also the process learning & creating it, I hope to clarify my own thinking.
+I'm a programmer fascinated by typed functional programming. I also happen to be a father, rock climber, and engineering manager at a startup. I've been working in tech for 15 years in a number of roles. Along the way I've made more mistakes than I can remember, built some exciting products, and learned a few things.
 
-If other people find value in the process, that's even better, but its not my primary objective.
-
-As for me, I'm a programmer fascinated by typed functional programming. I also happen to be a father, rock climber, and engineering manager who works in startups.
+Writing helps me think, and this blog is a tool for exploring questions I find interesting. Hopefully you'll find some value in these posts too.

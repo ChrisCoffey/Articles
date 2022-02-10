@@ -9,8 +9,6 @@ tags:
 
 Different languages have different strengths and weaknesses, which makes solving certain types of problems easier or more difficult. This post explores the different levels of abstraction commonly used in Ruby vs. Haskell. Typical Haskell code uses a much higher level of abstraction, making the code terse but also difficult for newcomers to understand. On the other hand, Ruby - while not an exceedingly verbose language - is usually written with a lower level of abstraction, making it more accessible yet harder to maintain due to it's lower abstraction level. I demonstrate the different approaches these languages encourage by showing how to reverse a linked list in linear time and constant space with each of them. I'm not advocating for one tool over the other, but I hope you come away with a more critical eye towards the strengths and weaknesses of your chosen tools.
 
-Before showing Haskell and Ruby < explain algorithm here>
-
 Haskell is a typed functional language that supports immutability and lazy evaluation by default. It started out as a research language and despite it's increasing popularity - although it's still niche - in industry, Haskell is still a research language at heart. The library ecosystem has decades of development behind it, and many of the libraries place mathematical abstractions at the programmer's fingertips. As a result, reversing a linked list has a simple and elegant solution that's inscrutable to anyone that is unfamiliar with the abstractions in use.
 
 ```haskell
@@ -45,4 +43,4 @@ I'm not arguing that one tool is superior in any way to the other, but that tool
 
 
 
-*The Haskell solution actually does consume `O(n)` memory because a new cons cell is created each time an element is added to the list. The values themselves are reused, but the `(:)` is new for each. Avoiding this would mean building a reference-based linked list like the Ruby example uses.
+*The Haskell solution actually uses `O(n)` memory because a new cons cell is created each time an element is added to the list. The values themselves are reused, but the `(:)` is new for each. Avoiding this would mean building a reference-based linked list like the Ruby example uses.

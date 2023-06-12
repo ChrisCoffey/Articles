@@ -1,13 +1,13 @@
 ---
-title: "A README for working with me"
-date: 2022-12-27T10:44:56-05:00
-draft: true
+title: "Working with me"
+date: 2023-6-05T10:44:56-05:00
+draft: false
 toc: false
 images:
 tags:
   - Management
 ---
-Welcome to my README. This is a guide to working effectively with me.
+Welcome to my manager README. This is a guide to working effectively with me.
 
 - [My role](#role)
 - [What do I value most?](#values)
@@ -17,19 +17,19 @@ Welcome to my README. This is a guide to working effectively with me.
 - [Nuances to working with me](#nuances)
 
 ### <a id="motivation"></a> Motivation for this document ###
-This document _should_ help you understand how we can work together effectively (if it doesn't please let me know).
+This document _should_ help establish a foundation so can work together effectively (if it doesn't please let me know).
 Consider this document an introduction to how I work, what I value, and some of my mental models.
-My hope is that this intro helps you better understand me, particularly if you're not part of the CollegeVine Engineering org.
+My hope is that this helps you better understand me, particularly if you're not part of the CollegeVine Engineering org.
 And if you are part of the Eng org, I hope this document bootstraps a productive working relationship that we'll strengthen through 1:1s.
 
 ### <a id="role"></a> My Role ###
 tl;dr; As the Head of Engineering at CollegeVine I'm responsible for making sure our team is engaged, focused on creating significant value for our users, and building the skills to grow with CollegeVine.
 
 Specifically, I'm measured on how well we:
-- Deliver an excellent experience to the Eng org's customers (i.e. CollegeVine) by bringing an enablement-first approach to engineering. Our responsibility is to create the products the business needs ("default to yes") while clearly communicating the available tradeoffs.
+- Deliver an excellent experience to the Eng org's customers (i.e. CollegeVine). Our responsibility is to create the products the business needs while clearly communicating the available tradeoffs.
 - Create an environment that attracts and retains extremely talented individuals. We should feel like the bar is raising a little bit with each new hire.
 - Align the team with the business so everyone understands what we're focused on and why.
-- Focus on effectiveness followed by efficiency. We're a small team covering a lot of surface area, so we need to solve the "right" problems.
+- Solve the "right" problems. This leads to focusing on effectiveness over efficiency since we're a small team covering a lot of surface area.
 - Develop individual contributors and managers
 
 I'm here to support you. If you need my help, just ask. If I'm not available immediately, propose a time to talk.
@@ -39,13 +39,12 @@ If I'm doing something that makes you consider leaving, please let me know. I ca
 ### <a id="values"></a> What do I value most? ###
 
 #### Project work
-Writing code and shipping software is the cost of doing business in product development, not the goal. The goal is unlocking valuable experiences for our customers. Sometimes we write software to do that, but we need to always always understand where the core value in a feature is and make sure that is delivered to the customer. This obsessive focus on customer value instead of software is the hallmark of great engineering. The faster we can deliver that value and build on it, the faster we learn from our customers and improve their experience. This doesn't mean cutting corners to ship faster, it means finding the point in "design space" that works for the customer and CollegeVine.
+Writing code and shipping software is the cost of doing business in product development, not the goal (although it's often the most fun as well). The goal is unlocking valuable experiences for our customers. Sometimes we write software to do that, but we need to always always understand where the core value in a feature is and make sure that is delivered to the customer. This obsessive focus on customer value instead of software is the hallmark of great product engineering. The faster we can deliver that value and build on it, the faster we learn from our customers and improve their experience. This doesn't mean cutting corners to ship faster, it means finding the point in "design space" that works for the customer and CollegeVine.
 
 ##### Takeaways from this:
 - Make sure you can always always draw a line from your work through creating customer value. If you can't, stop what you're doing and ask. Pushing forward without clearly understanding why is the best way I know to waste your time and build something nobody wants.
-- If you're unclear on why or how some body of work was prioritized, ask for training (books, online courses, etc...). Making you more capable is one of my top priorities.
-- Design and build for evolution. Your first idea is probably wrong, and that's okay. Do your work assuming you'll learn more about what's really required _after_ it's in users' hands. Try to pull that learning as early in a project as possible.
-- Hold each other (and me) accountable for focusing on the necessary problem. When you see scope creep, yak-shaving, or a too-low level of quality, call each other out on it in a kind and constructive manner.
+- Design and build for evolution. Do your work assuming you'll learn more about what's really required _after_ it's in users' hands. Try to pull that learning as early in a project as possible.
+- Hold each other (and me) accountable for focusing on the necessary problem(s). When you see scope creep, yak-shaving, or a too-low level of quality, call each other out on it in a kind and constructive manner.
 - Act like an owner. Fundamentally, you're helping to build this company, and I expect you to take reasonable risks and own your decisions.
 
 ####  Making decisions
@@ -57,7 +56,7 @@ You're a smart & talented individual; that's why we hired you. I expect you to h
 - Disagree and commit.
 - Hold each other accountable for the quality of our ideas, and leave a written record of decisions
 
-### <a id="dissappoint"></a> What will disappoint me? ###
+### <a id="dissappoint"></a> What will frustrate me? ###
 - Doing work without understanding why - both "why do this work?" and "why now?" (This pops a lot as "Doing XYZ because Foobar asked me to")
 - Not taking ownership for your career growth. You're a knowledge worker, and that comes with the responsibility for thinking about what you want and learning those sklls.
 - Not planning out your work. You'll hear me say "slow is smooth and smooth is fast" over and over, which means we should go fast up to the point where it starts causing unforced errors.
@@ -66,24 +65,23 @@ You're a smart & talented individual; that's why we hired you. I expect you to h
   - Shipping code and not keeping an eye on how it performs in production
   - Delivering work based on someone's spec, even if that spec doesn't make sense for the task at hand
   - Waiting for others to feed you designs, requirements etc... instead of reaching out and pulling in the information you need. Be a driver.
-
 - Worrying about "covering your ass" at the expense of moving the business forward
   - Sending me DMs about work that could easily be public
   - Waiting for my approval on a decision that's easily reversible
 
 ### <a id="operating"></a> How do I work? ###
-I want to understand how the Engineering system is operating - both inside the org and how we interact with the company. But I don't want to be involved in all the details. That's your job, and I trust you to do it well. I will either put systems in place that provide visibility into the system or ask you to do so. I'll then use these systems to understand how things are going.
+I want to understand how the Engineering system is operating - both inside the org and how we interact with the company. But I can't be involved in all the details. That's your job, and I trust you to do it well. I will either put systems in place that provide visibility into the system or ask you to do so. I'll then use these systems to understand how things are going.
 
-In general, I prefer you to push information you think I should know to me rather than relying on me to ask. Yes, my calendar gets packed, but don't let that stop you from sharing a Notion doc or Slack thread recap you think I should know about. If I don't think it's important, I'll ask you not to share things like that in the future.
+In general, I prefer you to push information you think I should know to me rather than relying on me to ask. Yes, my calendar gets packed, but don't let that stop you from sharing a Notion doc or Slack thread recap on topics you think I should know about. If I don't think it's important, I'll ask you not to share things like that in the future.
 
-I am a firm believer in using 1:1s to ensure you have time with me each week. This is your time, and I expect you to use it wisely. I may bring a few topics to the conversation, but the first question I'll ask you is always "what's on your mind?". I'll frequently ask for your feedback as well. Please come prepared.
+I am a firm believer in using 1:1s to ensure you have time with me each week. This is your time, and I want you to use it wisely. I may bring a few topics to the conversation, but the first question I'll ask you is always "what's on your mind?". I'll frequently ask for your feedback as well. Please come prepared.
 
 I try not to buffer up feedback until our 1:1, and will typically drop you a note immediately after I see something feedback worthy. However, during our 1:1s I may bring up events from the week and provide more in-depth feedback as well.
 
 In short, you'll find that I:
 - Take a "systems" approach to the organization
 - Expect continuous improvement from you and the org
-- Believe people > process, but invest heavily in both
+- Believe people > process, but invest in both
 - Trust you to do your best work independently (I don't want to micromanage your work)
 - Consider feedback essential for everyone in the org
 
@@ -97,8 +95,8 @@ You're a professional, and I trust your professional opinion about where the bal
 Work/life balance is important & you'll almost never find me sending you a message on the weekend. At the same time, I expect you to give CollegeVine your best hours during the work week and work intensely. Honestly, it's difficult to put in more than 40 hours of intense work in a week, so I also expect you to find ways to recharge to maintain consistent focus. If this is a struggle for you, let's talk.
 
 ### <a id="nuances"></a> Nuances to working with me ###
-- I do my best thinking in conversation or while writing. If we havne't talked about it and I haven't referenced some writing about an idea, please be skeptical and poke at it.
+- I do my best thinking in conversation or while writing. If we haven't talked about it and I haven't referenced some writing about an idea, please be skeptical and poke at it.
 - I take a skeptical approach to most ideas. This doesn't mean I'm not excited about it, more that I want to fully understand what we're talking about and see where the edge cases are.
 - When I'm really engaged in a conversation I have a bad habit of jumping in. That can be disruptive during video calls. I try to be aware of it, but please say something if I cut you off. It was probably because I'm excited about what we're talking about.
 - While I'm happy to share my opinion about how things should be, I am much much happier when you share your vision with me.
-- TODO: Something about metrics
+- I like to quantify things, so you'll notice I use a lot of metrics. This is how I understand big-picture trends, and not something I use to assess individuals.

@@ -1,6 +1,6 @@
 ---
 title: "Working with me"
-date: 2023-6-05T10:44:56-05:00
+date: 2023-06-05T10:44:56-05:00
 draft: false
 toc: false
 images:

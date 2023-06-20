@@ -48,17 +48,17 @@ Writing code and shipping software is the cost of doing business in product deve
 - Act like an owner. Fundamentally, you're helping to build this company, and I expect you to take reasonable risks and own your decisions.
 
 ####  Making decisions
-You're a smart & talented individual; that's why we hired you. I expect you to have a lot of good ideas, but everyone's ideas need to be tested and prodded. This conflict is an important part of refining our thinking and pushing past the local maxima our personal biases & perspectives limit us to. But we're not aiming for perfect, we're aiming for "works".
+You're a smart & talented individual; that's why we hired you. I expect you to have a lot of good ideas, but everyone's ideas need to be tested and prodded. This conflict is an important part of refining our thinking and pushing past the local maxima our personal biases & perspectives limit us to. But we're not aiming for perfect, we're aiming for "works well".
 
 ##### Takeaways from this:
 - Be charitable. Just like you are a smart and talented individual trying to do the right thing, trust your teammates to also be smart, talented people trying to do the right thing.
-- This isn't a democracy. Your contributions to a decision are valuable, but it's important to understand your role in the decision and not inadvertently confuse the decision.
+- This isn't a democracy. Your contributions to a decision are valuable, but ultimately you may not be the "decider" for every decision.
 - Disagree and commit.
 - Hold each other accountable for the quality of our ideas, and leave a written record of decisions
 
 ### <a id="dissappoint"></a> What will frustrate me? ###
 - Doing work without understanding why - both "why do this work?" and "why now?" (This pops a lot as "Doing XYZ because Foobar asked me to")
-- Not taking ownership for your career growth. You're a knowledge worker, and that comes with the responsibility for thinking about what you want and learning those sklls.
+- Not taking ownership for your career growth. You're a knowledge worker, and that comes with the responsibility for thinking about what you want and learning those skills.
 - Not planning out your work. You'll hear me say "slow is smooth and smooth is fast" over and over, which means we should go fast up to the point where it starts causing unforced errors.
 - Not pushing the pace. Ask what you can do to deliver the core value as soon as possible. We can't learn until that happens.
 - Not owning your work. Some examples of this:
